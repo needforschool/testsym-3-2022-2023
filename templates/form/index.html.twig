@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% form_theme formulaire 'foundation_5_layout.html.twig' %}
+
+{% block title %}Hello FormController!{% endblock %}
+
+{% block body %}
+<h1>Formulaire</h1>
+
+{#    {{ form(formulaire) }}#}
+    {{ form_start(formulaire) }}
+{#    {{ form_errors(form) }}#}
+
+    <div>
+        {{ form_row(formulaire.nom) }}
+    </div>
+    <div>
+{#        {{ form_row(formulaire.message) }}#}
+
+        <span>{{ form_errors(formulaire.message) }}</span>
+        {{ form_widget(formulaire.message) }}
+        {{ form_label(formulaire.message) }}
+    </div>
+
+
+
+    {{ form_row(formulaire.submit, { 'label': 'Submit me' }) }}
+    {{ form_end(formulaire) }}
+{% endblock %}
