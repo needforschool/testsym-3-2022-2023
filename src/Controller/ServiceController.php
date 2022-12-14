@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\SayHello;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,8 +21,9 @@ class ServiceController extends AbstractController
 
     #[Route('/service', name: 'app_service')]
 //    public function index(SluggerInterface $sluger): Response
-    public function index(LoggerInterface $logger): Response
+    public function index(LoggerInterface $logger, SayHello $hello): Response
     {
+        $hello->send();
         $str = 'Bonjour à tous';
         //$slug = $sluger->slug($str);
         $slug = $this->sluger->slug($str);
