@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>{% block title %}Nom du site - {% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+        {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}{% endblock %}
+
+
+    </head>
+    <body>
+    <header>
+        <div class="logo">
+            <img src="{{ asset('asset/img/logo.jpg') }}" alt="" width="100px">
+            <img src="{{ absolute_url(asset('asset/img/logo.jpg')) }}" alt="" width="100px">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+                <li><a href="{{ path('app_service') }}">Service</a></li>
+                <li><a href="{{ path('twig1') }}">Twig1</a></li>
+                <li><a href="{{ path('dede1', {text: 'bernard'}) }}">dede1 - Bernard</a></li>
+                <li><a href="{{ path('dede1', {text: 'jacky'}) }}">dede1 - Jacky</a></li>
+                <li><a href="{{ url('dede1', {text: 'jacky'}) }}">dede1 - Jacky</a></li>
+            </ul>
+        </nav>
+        <div class="notifications">
+            {{ render(controller('App\\Controller\\HomeController::getNotifications')) }}
+            {{ render(controller('App\\Controller\\HomeController::getNotifications', {nbre: 12})) }}
+        </div>
+    </header>
+        {% block body %}{% endblock %}
+        {% block sidebar %}1111111111111{% endblock %}
+        {% block beforefooter %}{% endblock %}
+
+
+        {{ encore_entry_script_tags('app') }}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} page test twig{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="stylepagetwig.css">
+{% endblock %}
+
+{% block body %}
+
+    {# dump(app.request) #}
+    {# dump(app.request.method) #}
+    {# dump(app.environment) #}
+    {# dump(app.token) #}
+{#    {{ dump(app.session) }}#}
+    {# dump(app.flashes) #}
+    <h1>Page twig test</h1>
+
+
+    {{ dump( fruits) }}
+
+    <p>{{ user.email }} : {{  user.nom }}</p>
+    {% if(emailAdmin2) %}
+        {{ emailAdmin2 }}
+    {% else %}
+
+    {% endif %}
+    <ul>
+    {% for item in [12,63,78] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+    <h2>Les produits</h2>
+    <ul>
+    {% for product in products %}
+        <li>{{ product.name | capitalize }}</li>
+    {% endfor %}
+    </ul>
+    <ul>
+        {% for dede in products %}
+            {% set product = dede %}
+            {{ include('twig/_one-product-small.html.twig') }}
+        {% endfor %}
+    </ul>
+    {% set ladate = 86445566 %}
+    {{ ladate | date('d/m/Y') }}
+
+
+{# <p>ici un commentaire</p> #}
+
+
+
+{% endblock %}
+
+{% block sidebar %}
+    222222
+    {{ parent() }}
+    3333333333
+{% endblock %}
+
+
